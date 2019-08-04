@@ -4,8 +4,10 @@ import 'done_list.dart';
 
 class DoneListScreen extends StatefulWidget{
   DoneListScreen({@required this.dones, this.todos});
-  List<Todo> dones;
-  List<Todo> todos;
+
+  final List<Todo> dones;
+  final List<Todo> todos;
+
   @override
   _DoneListScreenState createState() => _DoneListScreenState();
 }

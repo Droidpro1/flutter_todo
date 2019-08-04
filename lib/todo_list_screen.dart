@@ -5,8 +5,10 @@ import 'todo_list.dart';
 
 class TodoListScreen extends StatefulWidget {
   TodoListScreen({@required this.todos, this.dones});
-  List<Todo> todos;
-  List<Todo> dones;
+
+  final List<Todo> todos;
+  final List<Todo> dones;
+
   @override
   _TodoListScreenState createState() => _TodoListScreenState();
 }
