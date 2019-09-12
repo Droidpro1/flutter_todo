@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'todo.dart';
 import 'new_todo_dialog.dart';
 import 'todo_list.dart';
+import 'dart:async';
 
 class TodoListScreen extends StatefulWidget {
   TodoListScreen({@required this.todos, this.dones});
@@ -18,8 +19,12 @@ class _TodoListScreenState extends State<TodoListScreen> {
   _toggleTodo(Todo todo, bool isChecked){
     setState(() {
       todo.isDone = true;
-      widget.dones.add(todo);
-      widget.todos.remove(todo);
+    });
+    Timer(Duration(milliseconds: 600), (){
+      setState(() {
+        widget.dones.add(todo);
+        widget.todos.remove(todo);
+      });
     });
   }
 
