@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'todo_list_screen.dart';
 import 'done_list_screen.dart';
 import 'todo.dart';
-
 
 class HomeScreen extends StatefulWidget{
   @override
@@ -28,25 +28,34 @@ class _HomeScreenState extends State<HomeScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Simple Flutter Todo"),
-      ),
-      body: _screens.elementAt(_selectedItemIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            title: Text("In Progress"),
+    /*Since the app uses an AppBar, the Scaffold
+    must be wrapped in this AnnotatedRegion widget*/
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light.copyWith(
+          systemNavigationBarColor: Colors.transparent,
+          systemNavigationBarIconBrightness: Brightness.dark
+        ),
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Simple Flutter Todo"),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assignment_turned_in),
-            title: Text("Finished"),
+          body: _screens.elementAt(_selectedItemIndex),
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.white,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.assignment),
+                title: Text("In Progress"),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.assignment_turned_in),
+                title: Text("Finished"),
+              ),
+            ],
+            currentIndex: _selectedItemIndex,
+            onTap: _onItemTapped,
           ),
-        ],
-        currentIndex: _selectedItemIndex,
-        onTap: _onItemTapped,
-      ),
+        )
     );
   }
 }
