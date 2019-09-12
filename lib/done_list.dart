@@ -10,6 +10,7 @@ class DoneList extends StatelessWidget{
   final ToggleTodoCallback onTodoToggle; //or this
 
   Widget _buildItem(BuildContext context, int index){
+
     final todo = dones[index];
 
     return ListTile(
@@ -20,7 +21,6 @@ class DoneList extends StatelessWidget{
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -28,5 +28,4 @@ class DoneList extends StatelessWidget{
       itemCount: dones.length,
     );
   }
-
 }
